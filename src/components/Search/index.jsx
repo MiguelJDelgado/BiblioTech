@@ -43,12 +43,17 @@ const Resultado = styled.div`
 `
 
 function Search() {
-   const [livrosPesquisados, setLivrosPesquisados] = useState([])
-   function fazPesquisa(evento) {
-       const textoDigitado = evento.target.value.trim();
-       const resultadoPesquisa = livros.filter( livro => livro.nome.includes(textoDigitado))
-       setLivrosPesquisados(resultadoPesquisa)
-   }
+    const [livrosPesquisados, setLivrosPesquisados] = useState([])
+    function fazPesquisa(evento) {
+    const textoDigitado = evento.target.value.trim();  
+    if (textoDigitado === "") {
+        setLivrosPesquisados([]); 
+        return;
+    }
+    const resultadoPesquisa = livros.filter(livro => livro.nome.includes(textoDigitado));
+    setLivrosPesquisados(resultadoPesquisa);
+    }
+
      return (
        <PesquisaContainer>
            <Titulo>Já sabe por onde começar?</Titulo>
