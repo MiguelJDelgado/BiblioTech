@@ -25,49 +25,77 @@ const Subtitulo = styled.h3`
    margin-bottom: 40px;
 `
 
+const ListaResultados = styled.div`
+   max-height: 210px; 
+   overflow-y: auto; 
+   background-color:##002F52 ; 
+   border-radius: 5px;
+   padding: 10px;
+   width: 300px;
+   margin: 0 auto;
+`
+
 const Resultado = styled.div`
    display: flex;
-   justify-content: center;
+   justify-content: start;
    align-items: center;
-   margin-bottom: 20px;
+   gap: 10px;
+   padding: 8px;
+   border-bottom: 1px solid #ddd;
    cursor: pointer;
-   p {
-       width: 200px;
+
+   &:last-child {
+       border-bottom: none;
    }
-   img {
-       width: 100px;
-   }
+
    &:hover {
-       border: 1px solid white;
+       background: #f0f0f0;
+   }
+
+   img {
+       width: 50px;
+       height: 50px;
+       object-fit: cover;
+   }
+
+   p {
+       flex: 1;
+       text-align: left;
    }
 `
 
 function Search() {
     const [livrosPesquisados, setLivrosPesquisados] = useState([])
+
     function fazPesquisa(evento) {
-    const textoDigitado = evento.target.value.trim();  
-    if (textoDigitado === "") {
-        setLivrosPesquisados([]); 
-        return;
-    }
-    const resultadoPesquisa = livros.filter(livro => livro.nome.includes(textoDigitado));
-    setLivrosPesquisados(resultadoPesquisa);
+        const textoDigitado = evento.target.value.trim();
+        if (textoDigitado === "") {
+            setLivrosPesquisados([]); 
+            return;
+        }
+        const resultadoPesquisa = livros.filter(livro => livro.nome.toLowerCase().includes(textoDigitado.toLowerCase()));
+        setLivrosPesquisados(resultadoPesquisa);
     }
 
-     return (
+    return (
        <PesquisaContainer>
            <Titulo>Já sabe por onde começar?</Titulo>
            <Subtitulo>Encontre seu livro em nossa estante.</Subtitulo>
            <Input
                placeholder="Escreva sua próxima leitura"
-               onBlur={evento => fazPesquisa(evento)}
+               onChange={evento => fazPesquisa(evento)}
            />
-           { livrosPesquisados.map( livro => (
-               <Resultado>
-                   <img src={livro.src}/>
-                   <p>{livro.nome}</p>
-               </Resultado>
-           ) ) }
+           
+           {livrosPesquisados.length > 0 && (
+               <ListaResultados>
+                   {livrosPesquisados.map(livro => (
+                       <Resultado key={livro.nome}>
+                           <img src={livro.src} alt={livro.nome} />
+                           <p>{livro.nome}</p>
+                       </Resultado>
+                   ))}
+               </ListaResultados>
+           )}
        </PesquisaContainer>
    )
 }

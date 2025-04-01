@@ -19,6 +19,25 @@ const GlobalStyle = createGlobalStyle`
     -moz-osx-font-smoothing: grayscale;
   }
 
+  ::-webkit-scrollbar {
+  width: 8px; 
+  }
+
+  ::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+  }
+
+  ::-webkit-scrollbar-track {
+  background: #f0f0f0;
+  border-radius: 4px;
+  }
+
+
   a {
     font-weight: 500;
     color: #646cff;
