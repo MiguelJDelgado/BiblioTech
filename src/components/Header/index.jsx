@@ -1,6 +1,7 @@
 import ListaHeader from "./ListaHeader";
 import Logo from "./LogoHeader";
 import styled from 'styled-components';
+import { Link } from "react-router-dom";
 
 const HeaderContainer = styled.header`
     justify-content: center;
@@ -11,7 +12,9 @@ const HeaderContainer = styled.header`
 function Header() {
     return(
         <HeaderContainer>
-            <Logo></Logo>
+            <Link to="/">
+                <Logo />
+            </Link>
             <ListaHeader></ListaHeader>
         </HeaderContainer>
     )
