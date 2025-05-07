@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { useEffect, useState } from 'react'
 import { getLivros } from '../../services/livros'
 import { postFavorito } from '../../services/favoritos'
+import livroImg from '../../assets/livro.png' // Importando a imagem diretamente
 
 const PesquisaContainer = styled.section`
    background-image: linear-gradient(90deg, #002F52 35%, #326589 165%);
@@ -29,7 +30,7 @@ const Subtitulo = styled.h3`
 const ListaResultados = styled.div`
    max-height: 210px; 
    overflow-y: auto; 
-   background-color:##002F52 ; 
+   background-color: #002F52; 
    border-radius: 5px;
    padding: 10px;
    width: 300px;
@@ -67,7 +68,7 @@ const Resultado = styled.div`
 
 function Search() {
     const [livrosPesquisados, setLivrosPesquisados] = useState([])
-    const [ livros, setLivros ] = useState([])
+    const [livros, setLivros] = useState([])
 
     useEffect(() => {
         fetchLivros()
@@ -84,36 +85,43 @@ function Search() {
     }
 
     function fazPesquisa(evento) {
-        const textoDigitado = evento.target.value.trim();
+        const textoDigitado = evento.target.value.trim()
         if (textoDigitado === "") {
-            setLivrosPesquisados([]); 
-            return;
+            setLivrosPesquisados([])
+            return
         }
-        const resultadoPesquisa = livros.filter(livro => livro.nome.toLowerCase().includes(textoDigitado.toLowerCase()));
-        setLivrosPesquisados(resultadoPesquisa);
+
+        const resultadoPesquisa = livros.filter(livro =>
+            livro.nome.toLowerCase().includes(textoDigitado.toLowerCase())
+        ).map(livro => ({
+            ...livro,
+            src: livro.src || livroImg // Garante imagem padrão
+        }))
+
+        setLivrosPesquisados(resultadoPesquisa)
     }
 
     return (
-       <PesquisaContainer>
-           <Titulo>Já sabe por onde começar?</Titulo>
-           <Subtitulo>Encontre seu livro em nossa estante.</Subtitulo>
-           <Input
-               placeholder="Escreva sua próxima leitura"
-               onChange={evento => fazPesquisa(evento)}
-           />
-           
-           {livrosPesquisados.length > 0 && (
-               <ListaResultados>
-                   {livrosPesquisados.map(livro => (
-                       <Resultado onClick={() => insertFavorito(livro.id)} 
-                            key={livro.nome}>
-                           <img src={livro.src} alt={livro.nome} />
-                           <p>{livro.nome}</p>
-                       </Resultado>
-                   ))}
-               </ListaResultados>
-           )}
-       </PesquisaContainer>
-   )
+        <PesquisaContainer>
+            <Titulo>Já sabe por onde começar?</Titulo>
+            <Subtitulo>Encontre seu livro em nossa estante.</Subtitulo>
+            <Input
+                placeholder="Escreva sua próxima leitura"
+                onChange={evento => fazPesquisa(evento)}
+            />
+
+            {livrosPesquisados.length > 0 && (
+                <ListaResultados>
+                    {livrosPesquisados.map(livro => (
+                        <Resultado onClick={() => insertFavorito(livro.id)} key={livro.nome}>
+                            <img src={livro.src} alt={livro.nome} />
+                            <p>{livro.nome}</p>
+                        </Resultado>
+                    ))}
+                </ListaResultados>
+            )}
+        </PesquisaContainer>
+    )
 }
+
 export default Search
