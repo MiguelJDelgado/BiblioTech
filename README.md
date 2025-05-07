@@ -7,6 +7,7 @@
   <img src="https://img.shields.io/badge/css3-1572B6?style=for-the-badge&logo=css3&logoColor=fff" />
   <img src="https://img.shields.io/badge/node.js-339933?style=for-the-badge&logo=node.js&logoColor=fff" />
   <img src="https://img.shields.io/badge/nodemon-76D04B?style=for-the-badge&logo=nodemon&logoColor=000" />
+  <img src="https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white" />
 </p>
 
 <p align="center">
@@ -17,7 +18,7 @@
 </p>
 
 <p align="center">
-    <img src="./frontend/src/assets/telainicial.png" alt="Tela Inicial" width="400px">
+    <img src="./frontend/src/assets/telainicial.jpg" alt="Tela Inicial" width="400px">
 </p>
 <p align="center">
     <img src="./frontend/src/assets/lançamentos.jpg" alt="Lançamentos" width="400px">
