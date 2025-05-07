@@ -21,7 +21,7 @@
     <img src="./frontend/src/assets/telainicial.jpg" alt="Tela Inicial" width="400px">
 </p>
 <p align="center">
-    <img src="./frontend/src/assets/lançamentos.jpg" alt="Lançamentos" width="400px">
+    <img src="./frontend/src/assets/lancamentos.jpg" alt="Lançamentos" width="400px">
 </p>
 <p align="center">
     <img src="./frontend/src/assets/telafavoritos.jpg" alt="Favoritos" width="400px">
